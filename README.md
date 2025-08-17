@@ -1,2 +1,2 @@
 # EECS-4302-Final-Porject
-This was a school project for a course called EECS 4302 in my time at york university where we built a compiler from scratch, using the ANTLR4 parser generator, to support the measuring the code coverage of some suite of input tests, which are run on some input program.
+This was a school project for a course called EECS 4302 in my time at York University, where we built a compiler from scratch, using the ANTLR4 parser generator, to support measuring the code coverage of some suite of input tests, which are run on some input program. For a more detailed breakdown of the project's function, go to EECS4302_GroupAssignment_FINAL/src/doc for the technical documents. 
