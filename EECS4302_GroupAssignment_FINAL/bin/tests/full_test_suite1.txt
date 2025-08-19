@@ -1,0 +1,144 @@
+class A {
+    NUMBER value = 42;
+
+    fun double(x: NUMBER): NUMBER {
+        return x * 2;
+    }
+
+    fun isBig(n: NUMBER): BOOL {
+        return n > 100;
+    }
+}
+
+class B inherits A {
+    NUMBER twice = double(value);
+    BOOL check = isBig(twice);
+}
+
+class Main inherits B {
+    A obj = new A;
+    B sub = new B;
+
+    NUMBER val = obj.value;
+    NUMBER doubled = obj.double(10);
+
+    // === VALID ARRAY DECLARATIONS ===
+    NUMBER[] nums = [1,2,3];
+    BOOL[] bools = [true, false];
+    STRING[] strs = ["a", "b"];
+    NUMBER[][] matrix = [[1, 2], [3, 4]];
+    A[] polyArr = [new A, new B, sub];
+    A[][] poly2D = [[new A, new B], [obj, sub]];
+    NUMBER[] empty;
+    BOOL[] flags = [true, false, true];
+
+    // === ARRAY INDEXING / ASSIGNMENTS ===
+    nums[0] = 5;
+    matrix[1][1] = 9;
+    polyArr[1] = new B;
+    poly2D[0] = [new A, new B];
+
+    // === INSERT / APPEND: VALID CASES ===
+    insert(nums, 1, 99);
+    insert(matrix, 0, [7, 8]);
+    insert(poly2D, 2, [obj, sub]);
+    insert(flags, 0, true);
+    append(nums, 10);
+    append(strs, "z");
+    append(bools, false);
+    append(polyArr, new B);
+
+    // === CONTROL STRUCTURES ===
+    for (NUMBER i = 0; i < 5; i = i + 1;) {
+        val = val + i;
+    }
+
+    while (val < 200) {
+        val = val + 10;
+    }
+
+    if (isBig(val)) {
+        print("Big number");
+    } else {
+        print("Small number");
+    }
+
+    // === POLYMORPHISM ===
+    A baseRef = new B;
+    print(baseRef.double(3));
+    print(baseRef.value);
+
+    // === ERROR CASES ===
+
+    // ERROR: wrong arg type
+    NUMBER err1 = obj.double("string");  // ERROR: STRING passed to NUMBER param
+
+    // ERROR: no such field
+    BOOL err2 = obj.fakeField;  // ERROR: field doesn't exist
+
+    // ERROR: no such method
+    obj.notAFunction();  // ERROR: method doesn't exist
+
+    // ERROR: undeclared variable
+    NUMBER err3 = undeclaredVar;  // ERROR: undeclaredVar not declared
+
+    // ERROR: variable redeclaration
+    NUMBER z = 5;
+    NUMBER z = 10;  // ERROR: z already declared
+
+    // ERROR: type mismatch assignment
+    NUMBER err4 = true;  // ERROR: BOOL assigned to NUMBER
+
+    // ERROR: invalid operation
+    NUMBER err5 = 4 + false;  // ERROR: NUMBER + BOOL not valid
+
+    // ERROR: bad logic op
+    BOOL err6 = 1 or true;  // ERROR: NUMBER in logical op
+
+    // ERROR: bad conditional type
+    if ("string") { val = 5; }  // ERROR: STRING in condition
+
+    // ERROR: return mismatch
+    fun badReturn(): NUMBER {
+        return "hello";  // ERROR: STRING returned to NUMBER function
+    }
+
+    // ERROR: too many args
+    NUMBER err7 = double(1, 2);  // ERROR: extra argument
+
+    // ERROR: too few args
+    BOOL err8 = isBig();  // ERROR: missing argument
+
+    // === BAD INSERT / APPEND CASES ===
+
+    // ERROR: insert wrong type
+    insert(nums, 0, "bad");  // ERROR: STRING into NUMBER[]
+
+    // ERROR: insert into wrong target
+    insert(val, 0, 1);  // ERROR: cannot insert into scalar
+
+    // ERROR: append wrong type
+    append(bools, 1);  // ERROR: NUMBER into BOOL[]
+
+    // ERROR: append to non-array
+    append(val, 99);  // ERROR: cannot append to scalar
+
+    // ERROR: insert into 2D array with wrong shape
+    insert(matrix, 1, 9);  // ERROR: expected NUMBER[] not NUMBER
+
+    // ERROR: append wrong object type
+    append(polyArr, "string");  // ERROR: STRING into A[]
+
+    // ERROR: invalid array literal
+    NUMBER[] badArr = [1, true, 3];  // ERROR: BOOL in NUMBER[]
+
+    // ERROR: bad matrix nesting
+    NUMBER[][] badMat = [[1, 2], ["oops"]];  // ERROR: STRING in NUMBER[][]
+
+    // ERROR: indexing non-array
+    NUMBER nonArr = 5;
+    nonArr[0] = 1;  // ERROR: can't index non-array
+
+    // ERROR: assigning empty array to scalar
+    BOOL badAssign = [true, false];  // ERROR: array not assignable to BOOL
+}

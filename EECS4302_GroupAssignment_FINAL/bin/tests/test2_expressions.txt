@@ -1,0 +1,18 @@
+class TestExpressions {
+    NUMBER a = 5;
+    NUMBER b = 10;
+    BOOL flag = true;
+    STRING str = "hello";
+
+    NUMBER c = a + b;
+    BOOL cmp = a < b;
+
+    // ERROR: type mismatch
+    BOOL badAdd = true + 1;  // ERROR: BOOL + NUMBER not allowed
+
+    // ERROR: logical op on non-BOOL
+    BOOL invalidLogic = a and b;  // ERROR: NUMBER operands in logical op
+
+    // ERROR: relational op on non-primitive
+    BOOL badRel = str > "world";  // ERROR: STRING comparison invalid
+}

@@ -1,0 +1,63 @@
+class Utils {
+    // Basic math function using multiple expressions
+    fun compute(x: NUMBER, y: NUMBER): NUMBER {
+        return (x + y) * (x - y) / (x % 3) ^ 2;
+    }
+
+    // Logical chaining and implication
+    fun logicCheck(a: BOOL, b: BOOL): BOOL {
+        return (a and b) or not a -> b;
+    }
+
+    // String manipulation using concat
+    fun greet(name: STRING): STRING {
+        return "Hello, " & name & "!";
+    }
+
+    // 2D matrix access
+    NUMBER[][] data = [[10, 20], [30, 40]];
+    NUMBER val = data[1][0];  // should be 30
+
+    // Nested arithmetic
+    NUMBER crazy = ((5 + 3) * 2) % (4 + 2);
+
+    // Logical with math
+    BOOL valid = 10 > 5 and 3 < 7;
+
+    // Use of empty arrays
+    STRING[] names = ["A", "B", "C"];
+    STRING[] empty;
+
+    // Dynamic insert/append
+    insert(names, 1, "X");
+    append(names, "Z");
+
+    // Bad cases
+    BOOL oops1 = 5 + "hello";  // ERROR: mixing NUMBER and STRING
+    STRING oops2 = 5 & true;   // ERROR: concat between NUMBER and BOOL
+    BOOL oops3 = not 10;       // ERROR: NOT used on NUMBER
+    NUMBER oops4 = 3 ^ "two";  // ERROR: exponentiation with STRING
+    NUMBER oops5 = compute(5); // ERROR: too few args
+    NUMBER oops6 = compute(5, 2, 1); // ERROR: too many args
+}
+
+class Main inherits Utils {
+    // Chaining expressions in control structures
+    NUMBER x = 3;
+    NUMBER y = 7;
+    NUMBER result = compute(x + 1, y * 2);
+
+    if (logicCheck(true, false)) {
+        print("Logic passed");
+    } else {
+        print("Logic failed");
+    }
+
+    print(greet("World"));
+
+    // More expression errors
+    if ("notabool") { print("fail"); }  // ERROR: STRING as condition
+
+    BOOL b = 1 and 0;  // ERROR: using NUMBER in logpical expr
+    NUMBER z = 10 / 0;  // ERROR: div by zero
+}

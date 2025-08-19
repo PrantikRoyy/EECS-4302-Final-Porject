@@ -1,0 +1,22 @@
+class TestConditionals {
+    BOOL a = true;
+    BOOL b = false;
+
+    if (a or b) {
+        print("ok");
+    }
+
+    if (not a) {
+        print("negated");
+    }
+
+    // ERROR: non-BOOL condition
+    if ("yes") {  // ERROR: STRING used in condition
+        print("invalid");
+    }
+
+    // ERROR: arithmetic in condition
+    if (1 + 2) {  // ERROR: NUMBER used in condition
+        print("bad");
+    }
+}

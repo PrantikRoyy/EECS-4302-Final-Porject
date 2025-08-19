@@ -1,0 +1,27 @@
+class FunctionTest {
+
+    fun multiply(x: NUMBER, y: NUMBER): NUMBER {
+        return x * y;
+    }
+
+    fun alwaysTrue(): BOOL {
+        return true;
+    }
+    
+    fun printerFunc(s: STRING): VOID {
+    	STRING sVar = s;
+    }
+
+    NUMBER product = multiply(4, 5);
+
+    // wrong number of arguments
+    NUMBER tooFewArgs = multiply(10);
+
+    // wrong type of arguments
+    NUMBER badArgs = multiply(true, "oops");
+
+    BOOL result = alwaysTrue();
+
+    // return type mismatch (assigning BOOL to NUMBER)
+    NUMBER wrongType = alwaysTrue();
+}

@@ -1,0 +1,23 @@
+class Base {
+    NUMBER baseVal = 100;
+
+    fun getBase(): NUMBER {
+        return baseVal;
+    }
+}
+
+class Child inherits Base {
+    NUMBER childVal = getBase();
+}
+
+class GrandChild inherits Child {
+    Base obj = new GrandChild;
+
+    NUMBER inherited = obj.getBase();
+
+    // ERROR: accessing private or nonexistent field
+    NUMBER badAccess = obj.notReal;  // ERROR: no such field
+
+    // ERROR: call to undefined method
+    obj.fakeMethod();  // ERROR: no such method
+}

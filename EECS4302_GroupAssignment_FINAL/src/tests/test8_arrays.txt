@@ -1,0 +1,20 @@
+class ArrayTest {
+    NUMBER[] nums = [1, 2, 3];
+    NUMBER[][] matrix = [[1, 2], [3, 4]];
+
+    // ERROR: mixed types
+    NUMBER[] bad = [1, true];  // ERROR: BOOL in NUMBER[]
+    
+    // ERROR: bad index assign
+    nums[1] = "hi";  // ERROR: STRING into NUMBER[]
+
+    // ERROR: indexing non-array
+    NUMBER x = 5;
+    x[0] = 1;  // ERROR: scalar used as array
+
+    // ERROR: assigning 1D to 2D
+    NUMBER[][] badDepth = nums;  // ERROR: depth mismatch
+
+    // ERROR: type in nested array
+    NUMBER[][] badNest = [[1, 2], ["oops"]];  // ERROR: STRING in NUMBER[][]
+}

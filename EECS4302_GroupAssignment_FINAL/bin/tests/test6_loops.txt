@@ -1,0 +1,25 @@
+class LoopTest {
+    fun run(): VOID {
+        NUMBER i = 0;
+
+        while (i < 5) {
+            i = i + 1;
+        }
+
+        for (NUMBER j = 0; j < 3; j = j + 1;) {
+        	for (NUMBER l = 0; l < 3; l = l + 1;) {
+            	print(l);
+            }
+        }
+
+        // ERROR: STRING used as condition
+        while ("bad") {  // ERROR: expected BOOL
+            print("loop");
+        }
+
+        // ERROR: wrong type in for condition
+        for (NUMBER k = 0; 3; k = k + 1;) {  // ERROR: NUMBER not BOOL
+            print(k);
+        }
+    }
+}

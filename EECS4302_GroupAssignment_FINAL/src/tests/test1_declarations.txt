@@ -1,0 +1,25 @@
+class Parent {
+    // Valid Declarations
+    NUMBER v = 10;
+    STRING v2 = "base";
+    BOOL flag;
+
+    NUMBER[][] num_arr = [[0, 1], [2, 3], [4, 5]];
+    STRING[] str_arr = ["a", "b"];
+    BOOL[][] bool_arr = [[true, false], [false, true]];
+
+    // ERROR: mismatched types in array
+    NUMBER[] badArray = [1, true];  // ERROR: BOOL in NUMBER[]
+
+    // ERROR: invalid type init
+    STRING badInit = 123;  // ERROR: NUMBER assigned to STRING
+
+    fun foo(a: NUMBER): NUMBER {
+        return a * 2;
+    }
+
+    // ERROR: return type mismatch
+    fun badReturn(): BOOL {
+        return 1;  // ERROR: NUMBER returned, expected BOOL
+    }
+}

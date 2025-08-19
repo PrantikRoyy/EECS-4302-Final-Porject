@@ -1,0 +1,23 @@
+class Animal {
+    BOOL alive = true;
+
+    fun speak(): VOID {
+        print("...");
+    }
+}
+
+class Dog inherits Animal {
+    STRING breed = "Lab";
+}
+
+class ObjectTest {
+    Dog d = new Dog;
+    BOOL isAlive = d.alive;
+    d.speak();
+
+    // ERROR: no such field
+    STRING noField = d.age;  // ERROR: field does not exist
+
+    // ERROR: no such method
+    d.bark();  // ERROR: undefined method
+}
